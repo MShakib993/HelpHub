@@ -1,7 +1,43 @@
 
 
 
+// Option 1: Simple timeout (disappears after exactly 3 seconds)
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.querySelector('.loader').style.opacity = '0';
+        setTimeout(function() {
+            document.querySelector('.loader').style.display = 'none';
+            document.querySelector('.content').style.display = 'block';
+        }, 500); // fade out duration
+    }, 5000); // show for 3 seconds (3000ms)
+});
 
+// Option 2: Wait for both minimum time AND page load (recommended)
+/*
+let pageLoaded = false;
+let minTimeElapsed = false;
+const minDisplayTime = 2000; // 2 seconds minimum
+
+window.addEventListener('load', function() {
+    pageLoaded = true;
+    tryHideLoader();
+});
+
+setTimeout(function() {
+    minTimeElapsed = true;
+    tryHideLoader();
+}, minDisplayTime);
+
+function tryHideLoader() {
+    if (pageLoaded && minTimeElapsed) {
+        document.querySelector('.loader').style.opacity = '0';
+        setTimeout(function() {
+            document.querySelector('.loader').style.display = 'none';
+            document.querySelector('.content').style.display = 'block';
+        }, 500);
+    }
+}
+*/
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
